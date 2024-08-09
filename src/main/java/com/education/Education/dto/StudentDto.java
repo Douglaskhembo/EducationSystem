@@ -1,32 +1,18 @@
-package com.education.Education.model;
+package com.education.Education.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Students")
-public class Student {
-
-    @Id
-    @GeneratedValue
+public class StudentDto {
     private Long id;
-    @Column(name = "std_firstName")
     private String firstName;
-    @Column(name = "std_lastName")
     private String lastName;
-    @Column(name = "std_age")
     private Integer age;
-    @Column(name = "std_email", unique = true)
     private String email;
 
-    public Student() {
-    }
-
-    public Student(Long id, String firstName, String lastName, Integer age, String email) {
-        this.id = id;
+    public StudentDto(Long id, String firstName, String lastName, Integer age, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
+//        this.id = id;
     }
 
     public Long getId() {
