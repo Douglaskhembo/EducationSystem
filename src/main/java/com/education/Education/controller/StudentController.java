@@ -29,7 +29,7 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-    @GetMapping("/{student-id}")
+    @GetMapping("/list-student/{student-id}")
     public ResponseEntity<StudentDto> getStudentById(@PathVariable("student-id") Long studentId){
         StudentDto studentDto = studentService.getStudentById(studentId);
         return ResponseEntity.ok(studentDto);

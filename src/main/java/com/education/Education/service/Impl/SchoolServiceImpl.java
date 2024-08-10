@@ -57,8 +57,13 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public SchoolDto getSchoolByName(String schoolName) {
-        return null;
+    public List<SchoolDto> getSchoolByName(String schoolName) {
+        List<School> schools = schoolRepository.findSchoolByName(schoolName);
+        if (schools.isEmpty()){
+            throw new ResourceNotFoundException("School not found for name, " +schoolName);
+        }
+        return schools.stream().map((SchoolMapper::mapToSchoolDto))
+                .collect(Collectors.toList());
     }
 
     @Override

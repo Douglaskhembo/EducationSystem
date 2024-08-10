@@ -10,6 +10,6 @@ public interface SchoolService {
     SchoolDto getSchoolById(Long schoolId);
     List<SchoolDto> getAllSchools();
     SchoolDto updateSchool(Long schoolId, SchoolDto schoolDto);
-    SchoolDto getSchoolByName(String schoolName);
+    List<SchoolDto> getSchoolByName(String schoolName);
     void deleteSchool(Long schoolId);
 }
