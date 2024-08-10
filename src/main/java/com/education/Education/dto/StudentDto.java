@@ -12,7 +12,7 @@ public class StudentDto {
         this.lastName = lastName;
         this.age = age;
         this.email = email;
-//        this.id = id;
+        this.id = id;
     }
 
     public Long getId() {

@@ -6,10 +6,12 @@ import com.education.Education.mapper.StudentMapper;
 import com.education.Education.model.Student;
 import com.education.Education.repository.StudentRepository;
 import com.education.Education.service.StudentService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
@@ -57,5 +59,10 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found for id," +studentId));
         studentRepository.delete(student);
+    }
+
+    @Override
+    public StudentDto getStudentByName(String firstName) {
+        return null;
     }
 }
