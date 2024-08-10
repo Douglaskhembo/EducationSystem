@@ -19,6 +19,11 @@ public class Student implements Serializable {
     private Long studentAge;
     @Column(name = "std_email", unique = true)
     private String studentEmail;
+    @OneToOne(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
+    private StudentProfile studentProfile;
 
     public Student() {
     }
