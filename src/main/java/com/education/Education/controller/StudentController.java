@@ -35,6 +35,14 @@ public class StudentController {
         return ResponseEntity.ok(studentDto);
     }
 
+    @GetMapping("/student-name")
+    public ResponseEntity<List<StudentDto>> getStudentByName(
+            @RequestParam(value = "firstname", required = false) String firstName,
+            @RequestParam(value = "lastName", required = false) String lastName){
+        List<StudentDto> students = studentService.getStudentByName(firstName, lastName);
+        return ResponseEntity.ok(students);
+    }
+
     @PutMapping("/update-student/{student-id}")
     public ResponseEntity<StudentDto> updateStudent(
             @PathVariable("student-id") Long studentId, @RequestBody StudentDto studentDto){

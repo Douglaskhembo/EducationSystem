@@ -45,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found for id," + studentId));
 
-        student.setAge(studentDto.getAge());
-        student.setEmail(student.getEmail());
+        student.setStudentAge(studentDto.getStudentAge());
+        student.setStudentEmail(student.getStudentEmail());
         student.setFirstName(studentDto.getFirstName());
         student.setLastName(studentDto.getLastName());
 
@@ -62,7 +62,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto getStudentByName(String firstName) {
-        return null;
+    public List<StudentDto> getStudentByName(String firstName, String lastName) {
+        List<Student> studentName = studentRepository.findStudentByName(firstName, lastName);
+        if (studentName.isEmpty()){
+            throw new ResourceNotFoundException("No student found with the given name(s)" +
+                    (firstName != null ? "First Name: " + firstName : "") +
+                    (lastName != null ? "Last Name: " + lastName : ""));
+        }
+        return studentName.stream().map((StudentMapper::mapToStudentDto))
+                .collect(Collectors.toList());
     }
+
 }

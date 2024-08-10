@@ -9,8 +9,8 @@ public class StudentMapper {
                 student.getId(),
                 student.getFirstName(),
                 student.getLastName(),
-                student.getAge(),
-                student.getEmail()
+                student.getStudentAge(),
+                student.getStudentEmail()
         );
     }
 
@@ -19,8 +19,8 @@ public class StudentMapper {
                 studentDto.getId(),
                 studentDto.getFirstName(),
                 studentDto.getLastName(),
-                studentDto.getAge(),
-                studentDto.getEmail()
+                studentDto.getStudentAge(),
+                studentDto.getStudentEmail()
         );
     }
 }

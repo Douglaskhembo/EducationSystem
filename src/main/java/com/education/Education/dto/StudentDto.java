@@ -1,17 +1,19 @@
 package com.education.Education.dto;
 
-public class StudentDto {
+import java.io.Serializable;
+
+public class StudentDto implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-    private Integer age;
-    private String email;
+    private Long studentAge;
+    private String studentEmail;
 
-    public StudentDto(Long id, String firstName, String lastName, Integer age, String email) {
+    public StudentDto(Long id, String firstName, String lastName, Long studentAge, String studentEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
-        this.email = email;
+        this.studentAge = studentAge;
+        this.studentEmail = studentEmail;
         this.id = id;
     }
 
@@ -39,19 +41,19 @@ public class StudentDto {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Long getStudentAge() {
+        return studentAge;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setStudentAge(Long studentAge) {
+        this.studentAge = studentAge;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudentEmail() {
+        return studentEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 }

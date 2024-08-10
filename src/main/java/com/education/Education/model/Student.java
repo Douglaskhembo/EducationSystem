@@ -2,31 +2,33 @@ package com.education.Education.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "Students")
-public class Student {
+@Table(name = "ed_students")
+public class Student implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "std_firstName")
     private String firstName;
     @Column(name = "std_lastName")
     private String lastName;
     @Column(name = "std_age")
-    private Integer age;
+    private Long studentAge;
     @Column(name = "std_email", unique = true)
-    private String email;
+    private String studentEmail;
 
     public Student() {
     }
 
-    public Student(Long id, String firstName, String lastName, Integer age, String email) {
+    public Student(Long id, String firstName, String lastName, Long studentAge, String studentEmail) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
-        this.email = email;
+        this.studentAge = studentAge;
+        this.studentEmail = studentEmail;
     }
 
     public Long getId() {
@@ -53,19 +55,19 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Long getStudentAge() {
+        return studentAge;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setStudentAge(Long age) {
+        this.studentAge = age;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudentEmail() {
+        return studentEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStudentEmail(String email) {
+        this.studentEmail = email;
     }
 }
