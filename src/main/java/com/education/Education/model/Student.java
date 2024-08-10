@@ -10,6 +10,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "std_id")
     private Long id;
     @Column(name = "std_firstName")
     private String firstName;
@@ -25,6 +26,12 @@ public class Student implements Serializable {
     )
     private StudentProfile studentProfile;
 
+    @ManyToOne
+    @JoinColumn(
+            name = "school_id"
+    )
+    private School school;
+
     public Student() {
     }
 
@@ -34,6 +41,22 @@ public class Student implements Serializable {
         this.lastName = lastName;
         this.studentAge = studentAge;
         this.studentEmail = studentEmail;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     public Long getId() {

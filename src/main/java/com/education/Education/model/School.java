@@ -2,6 +2,8 @@ package com.education.Education.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ed_school")
 public class School {
@@ -26,6 +28,11 @@ public class School {
     @Column(name = "sch_county")
     private String schoolCounty;
 
+    @OneToMany(
+            mappedBy = "school"
+    )
+    private List<Student> students;
+
     public School() {
     }
 
@@ -36,6 +43,14 @@ public class School {
         this.schoolCountry = schoolCountry;
         this.schoolCounty = schoolCounty;
         this.id = id;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     public Long getId() {
