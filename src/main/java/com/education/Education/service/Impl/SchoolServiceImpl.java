@@ -30,21 +30,22 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public SchoolDto getSchoolById(Long schoolId) {
         School school = schoolRepository.findById(schoolId)
-                .orElseThrow(()-> new ResourceNotFoundException("School not found for id, " +schoolId));
+                .orElseThrow(() -> new ResourceNotFoundException("School not found for id: " + schoolId));
         return SchoolMapper.mapToSchoolDto(school);
     }
 
     @Override
     public List<SchoolDto> getAllSchools() {
         List<School> schools = schoolRepository.findAll();
-        return schools.stream().map((SchoolMapper::mapToSchoolDto))
+        return schools.stream()
+                .map(SchoolMapper::mapToSchoolDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public SchoolDto updateSchool(Long schoolId, SchoolDto schoolDto) {
         School school = schoolRepository.findById(schoolId)
-                .orElseThrow(()-> new ResourceNotFoundException("School not found for id, " +schoolId));
+                .orElseThrow(() -> new ResourceNotFoundException("School not found for id: " + schoolId));
 
         school.setSchoolName(schoolDto.getSchoolName());
         school.setSchoolEmail(schoolDto.getSchoolEmail());
@@ -52,24 +53,25 @@ public class SchoolServiceImpl implements SchoolService {
         school.setSchoolCountry(schoolDto.getSchoolCountry());
         school.setSchoolCounty(schoolDto.getSchoolCounty());
 
-        School school1 = schoolRepository.save(school);
-        return SchoolMapper.mapToSchoolDto(school1);
+        School updatedSchool = schoolRepository.save(school);
+        return SchoolMapper.mapToSchoolDto(updatedSchool);
     }
 
     @Override
     public List<SchoolDto> getSchoolByName(String schoolName) {
         List<School> schools = schoolRepository.findSchoolByName(schoolName);
-        if (schools.isEmpty()){
-            throw new ResourceNotFoundException("School not found for name, " +schoolName);
+        if (schools.isEmpty()) {
+            throw new ResourceNotFoundException("No school found with the name: " + schoolName);
         }
-        return schools.stream().map((SchoolMapper::mapToSchoolDto))
+        return schools.stream()
+                .map(SchoolMapper::mapToSchoolDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void deleteSchool(Long schoolId) {
         School school = schoolRepository.findById(schoolId)
-                .orElseThrow(()-> new ResourceNotFoundException("School not found for id, " +schoolId));
+                .orElseThrow(() -> new ResourceNotFoundException("School not found for id: " + schoolId));
         schoolRepository.delete(school);
     }
 }

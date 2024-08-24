@@ -1,5 +1,6 @@
 package com.education.Education.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,16 +11,15 @@ public class School {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="sch_id")
-    private Long id;
+    private Long schId;
 
-    @Column(name = "sch_name")
+    @Column(name = "sch_name", unique = true)
     private String schoolName;
 
-    @Column(name = "sch_email")
+    @Column(name = "sch_email", unique = true)
     private String schoolEmail;
 
-    @Column(name = "sch_phoneNo")
+    @Column(name = "sch_phoneNo", unique = true)
     private String schoolPhone;
 
     @Column(name = "sch_country")
@@ -31,34 +31,27 @@ public class School {
     @OneToMany(
             mappedBy = "school"
     )
+    @JsonManagedReference
     private List<Student> students;
 
     public School() {
     }
 
-    public School(Long id,String schoolName, String schoolEmail, String schoolPhone, String schoolCountry, String schoolCounty) {
+    public School(Long schId,String schoolName, String schoolEmail, String schoolPhone, String schoolCountry, String schoolCounty) {
         this.schoolName = schoolName;
         this.schoolEmail = schoolEmail;
         this.schoolPhone = schoolPhone;
         this.schoolCountry = schoolCountry;
         this.schoolCounty = schoolCounty;
-        this.id = id;
+        this.schId = schId;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public Long getSchId() {
+        return schId;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setSchId(Long schId) {
+        this.schId = schId;
     }
 
     public String getSchoolName() {
@@ -99,5 +92,13 @@ public class School {
 
     public void setSchoolCounty(String schoolCounty) {
         this.schoolCounty = schoolCounty;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

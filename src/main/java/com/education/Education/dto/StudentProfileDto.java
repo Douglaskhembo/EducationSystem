@@ -1,23 +1,27 @@
 package com.education.Education.dto;
 
 public class StudentProfileDto {
-    private Long id;
+
+    private Long stpId;
     private String bio;
     private String classForm;
     private Long formStream;
+    private StudentDto student;
 
-    public StudentProfileDto(String bio, String classForm, Long formStream) {
+    public StudentProfileDto(Long stpId, String bio, String classForm, Long formStream, StudentDto student) {
+        this.stpId = stpId;
         this.bio = bio;
         this.classForm = classForm;
         this.formStream = formStream;
+        this.student = student;
     }
 
-    public Long getId() {
-        return id;
+    public Long getStpId() {
+        return stpId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStpId(Long stpId) {
+        this.stpId = stpId;
     }
 
     public String getBio() {
@@ -42,5 +46,13 @@ public class StudentProfileDto {
 
     public void setFormStream(Long formStream) {
         this.formStream = formStream;
+    }
+
+    public StudentDto getStudent() {
+        return student;
+    }
+
+    public void setStudent(StudentDto student) {
+        this.student = student;
     }
 }

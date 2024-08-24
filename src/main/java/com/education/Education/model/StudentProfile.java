@@ -1,5 +1,6 @@
 package com.education.Education.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,9 +8,8 @@ import jakarta.persistence.*;
 public class StudentProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "stp_id")
-    private Long id;
-    @Column(name = "stp_bio")
+    private Long stpId;
+    @Column(name = "stp_bio", unique = true)
     private String bio;
     @Column(name = "std_classForm")
     private String classForm;
@@ -19,31 +19,26 @@ public class StudentProfile {
     @JoinColumn(
             name = "student_id"
     )
+    @JsonBackReference
     private Student student;
 
     public StudentProfile() {
     }
 
-    public StudentProfile(String bio, String classForm, Long formStream) {
+    public StudentProfile(Long stpId, String bio, String classForm, Long formStream, Student student) {
+        this.stpId = stpId;
         this.bio = bio;
         this.classForm = classForm;
         this.formStream = formStream;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
         this.student = student;
     }
 
-    public Long getId() {
-        return id;
+    public Long getStpId() {
+        return stpId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStpId(Long stpId) {
+        this.stpId = stpId;
     }
 
     public String getBio() {
@@ -68,5 +63,13 @@ public class StudentProfile {
 
     public void setFormStream(Long formStream) {
         this.formStream = formStream;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

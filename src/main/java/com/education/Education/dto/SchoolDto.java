@@ -1,18 +1,20 @@
 package com.education.Education.dto;
 
-import jakarta.persistence.Column;
+import java.util.Collections;
+import java.util.List;
 
 public class SchoolDto {
-    private Long id;
+    private Long schId;
     private String schoolName;
     private String schoolEmail;
     private String schoolPhone;
     private String schoolCountry;
     private String schoolCounty;
+    private List<StudentDto> students = Collections.emptyList();
 
-    public SchoolDto(Long id, String schoolName, String schoolEmail, String schoolPhone,
+    public SchoolDto(Long schId, String schoolName, String schoolEmail, String schoolPhone,
                      String schoolCountry, String schoolCounty) {
-        this.id = id;
+        this.schId = schId;
         this.schoolName = schoolName;
         this.schoolEmail = schoolEmail;
         this.schoolPhone = schoolPhone;
@@ -20,12 +22,13 @@ public class SchoolDto {
         this.schoolCounty = schoolCounty;
     }
 
-    public Long getId() {
-        return id;
+    // Getters and Setters
+    public Long getSchId() {
+        return schId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSchId(Long schId) {
+        this.schId = schId;
     }
 
     public String getSchoolName() {
@@ -66,5 +69,13 @@ public class SchoolDto {
 
     public void setSchoolCounty(String schoolCounty) {
         this.schoolCounty = schoolCounty;
+    }
+
+    public List<StudentDto> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<StudentDto> students) {
+        this.students = students;
     }
 }

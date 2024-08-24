@@ -4,9 +4,13 @@ import com.education.Education.dto.SchoolDto;
 import com.education.Education.model.School;
 
 public class SchoolMapper {
-    public static SchoolDto mapToSchoolDto(School school){
+
+    public static SchoolDto mapToSchoolDto(School school) {
+        if (school == null) {
+            return null;
+        }
         return new SchoolDto(
-                school.getId(),
+                school.getSchId(),
                 school.getSchoolName(),
                 school.getSchoolEmail(),
                 school.getSchoolPhone(),
@@ -15,9 +19,12 @@ public class SchoolMapper {
         );
     }
 
-    public static School mapToSchool(SchoolDto schoolDto){
+    public static School mapToSchool(SchoolDto schoolDto) {
+        if (schoolDto == null) {
+            return null;
+        }
         return new School(
-                schoolDto.getId(),
+                schoolDto.getSchId(),
                 schoolDto.getSchoolName(),
                 schoolDto.getSchoolEmail(),
                 schoolDto.getSchoolPhone(),

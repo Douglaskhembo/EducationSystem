@@ -1,5 +1,6 @@
 package com.education.Education.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -10,8 +11,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "std_id")
-    private Long id;
+    private Long stdId;
     @Column(name = "std_firstName")
     private String firstName;
     @Column(name = "std_lastName")
@@ -30,41 +30,26 @@ public class Student implements Serializable {
     @JoinColumn(
             name = "school_id"
     )
+    @JsonBackReference
     private School school;
 
     public Student() {
     }
 
-    public Student(Long id, String firstName, String lastName, Long studentAge, String studentEmail) {
-        this.id = id;
+    public Student(Long stdId, String firstName, String lastName, Long studentAge, String studentEmail) {
+        this.stdId = stdId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentAge = studentAge;
         this.studentEmail = studentEmail;
     }
 
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
+    public Long getStdId() {
+        return stdId;
     }
 
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
-
-    public School getSchool() {
-        return school;
-    }
-
-    public void setSchool(School school) {
-        this.school = school;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setStdId(Long stdId) {
+        this.stdId = stdId;
     }
 
     public String getFirstName() {
@@ -87,15 +72,31 @@ public class Student implements Serializable {
         return studentAge;
     }
 
-    public void setStudentAge(Long age) {
-        this.studentAge = age;
+    public void setStudentAge(Long studentAge) {
+        this.studentAge = studentAge;
     }
 
     public String getStudentEmail() {
         return studentEmail;
     }
 
-    public void setStudentEmail(String email) {
-        this.studentEmail = email;
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }
